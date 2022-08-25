@@ -34,6 +34,11 @@ export class PetsService {
         return await this.petRepository.find(); //select * from pet
     }
 
+    async findOne(id: number): Promise<Pet> {
+        return await this.petRepository.findOneOrFail({where: {id}}); //select * from pet where id = :id
+    }
+
+
     async createPet(createPetInput:CreatePetInput): Promise<Pet> {
         const pet = this.petRepository.create(createPetInput); //newPet = new Pet ();new.name =new.type
 
