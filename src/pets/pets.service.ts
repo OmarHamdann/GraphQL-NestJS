@@ -6,27 +6,6 @@ import { Pet } from './pet.entity';
 
 @Injectable()
 export class PetsService {
-   // private readonly pets: Pet[];
-    
-    // constructor() {
-    //     this.pets = [
-    //     {
-    //         id: 1,
-    //         name: 'Max',
-    //         type: 'dog',
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Tom',
-    //         type: 'cat',
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'Simba',
-    //         type: 'cat',
-    //     },
-    //     ];
-    // }
 
     constructor(@InjectRepository(Pet) private readonly  petRepository: Repository<Pet>) {}
     
