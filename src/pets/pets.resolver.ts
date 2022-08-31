@@ -1,5 +1,5 @@
 import { Resolver,Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { CreatePetInput } from 'src/dto/create-Pet.input';
+import { CreatePetInput } from 'src/pets/dto/create-Pet.input';
 import { Pet } from './pet.entity';
 import { PetsService } from './pets.service';
 
