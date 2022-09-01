@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateOwnerInput } from './dto/create-owner.input';
 import { UpdateOwnerInput } from './dto/update-owner.input';
+import { Owner } from './entities/owner.entity';
 
 @Injectable()
 export class OwnersService {
-  create(createOwnerInput: CreateOwnerInput) {
-    return 'This action adds a new owner';
+  constructor(@InjectRepository(Owner) private  ownerRepository: Repository<Owner>) {}
+
+
+  async create(createOwnerInput: CreateOwnerInput): Promise<Owner>  {
+    const newOwner = this.ownerRepository.create(createOwnerInput);
+    return await this.ownerRepository.save(newOwner);
   }
 
-  findAll() {
-    return `This action returns all owners`;
+  async findAll(): Promise<Owner[]> {
+    return await this.ownerRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} owner`;
+  async findOne(id: number): Promise<Owner> {
+    return await this.ownerRepository.findOneOrFail({where: {id}});
   }
 
-  update(id: number, updateOwnerInput: UpdateOwnerInput) {
-    return `This action updates a #${id} owner`;
+ async update(id: number, updateOwnerInput: UpdateOwnerInput){
+  return await this.ownerRepository.update(id, updateOwnerInput);
+
+ 
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} owner`;
+  async remove(id: number): Promise<any> {
+    return await this.ownerRepository.delete(id);
   }
 }
