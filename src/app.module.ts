@@ -1,4 +1,5 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+/* eslint-disable prettier/prettier */
+import { ApolloDriver } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -20,12 +21,7 @@ import { OwnersModule } from './owners/owners.module';
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    
-
-
     PetsModule,
-    
-
 
     OwnersModule,
   ],
