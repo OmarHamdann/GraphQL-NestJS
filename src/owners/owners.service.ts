@@ -7,10 +7,11 @@ import { Owner } from './entities/owner.entity';
 
 @Injectable()
 export class OwnersService {
-  constructor(@InjectRepository(Owner) private  ownerRepository: Repository<Owner>) {}
+  constructor(
+    @InjectRepository(Owner) private ownerRepository: Repository<Owner>,
+  ) {}
 
-
-  async create(createOwnerInput: CreateOwnerInput): Promise<Owner>  {
+  async create(createOwnerInput: CreateOwnerInput): Promise<Owner> {
     const newOwner = this.ownerRepository.create(createOwnerInput);
     return await this.ownerRepository.save(newOwner);
   }
@@ -20,13 +21,11 @@ export class OwnersService {
   }
 
   async findOne(id: number): Promise<Owner> {
-    return await this.ownerRepository.findOneOrFail({where: {id}});
+    return await this.ownerRepository.findOneOrFail({ where: { id } });
   }
 
- async update(id: number, updateOwnerInput: UpdateOwnerInput){
-  return await this.ownerRepository.update(id, updateOwnerInput);
-
- 
+  async update(id: number, updateOwnerInput: UpdateOwnerInput) {
+    return await this.ownerRepository.update(id, updateOwnerInput);
   }
 
   async remove(id: number): Promise<any> {
