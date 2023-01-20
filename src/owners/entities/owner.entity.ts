@@ -5,17 +5,15 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 @ObjectType()
 export class Owner {
-  
-  
   @PrimaryGeneratedColumn()
-  @Field(type=>Int)
+  @Field((type) => Int)
   id: number;
 
   @Column()
   @Field()
   name: string;
 
-  @OneToMany(type=>Pet, pet=>pet.owners)
-  @Field(type=>[Pet],{nullable:true})
+  @OneToMany((type) => Pet, (pet) => pet.owners)
+  @Field((type) => [Pet], { nullable: true })
   pets?: Pet[];
 }
